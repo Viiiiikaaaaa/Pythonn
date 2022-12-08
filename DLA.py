@@ -7,7 +7,7 @@ class Cell_auto:
         self.field_0 = [[0] * self.width for i in range(self.height)]
         self.life_num = life
 
-    def Initialize(self):
+    def initialize(self):
         while self.life_num > 0:
             self.x = random.randint(1, self.width - 1)
             self.y = random.randint(1, self.height - 1)
@@ -17,13 +17,13 @@ class Cell_auto:
                 self.field_0[self.y][self.x] = 1
                 self.life_num -= 1
 
-    def Copy_Field(self):
+    def copy_Field(self):
         self.bufer_field = [[0] * self.width for i in range(self.height)]
         for y in range(self.height):
             for x in range(self.width):
                 self.bufer_field[y][x] = self.field_0[y][x]
 
-    def Update(self):
+    def update(self):
         for y in range(1, self.height - 1):
             for x in range(1, self.width - 1):
                 life = 0
@@ -42,7 +42,7 @@ class Cell_auto:
                 self.field_0[y][x] = self.bufer_field[y][x]
 
 class DLA(Cell_auto):
-    def Place_particle(self):
+    def place_particle(self):
         self.x = random.randint(1, self.width - 1)
         self.y = random.randint(1, self.height - 1)
         while self.field_0[self.y][self.x] == 2:
@@ -50,7 +50,7 @@ class DLA(Cell_auto):
             self.y = random.randint(1, self.height - 1)
         self.field_0[self.y][self.x] = 1
 
-    def Update(self):
+    def update(self):
         center_counter = 1
         moving = True
         moving_x = 0
@@ -80,12 +80,12 @@ class DLA(Cell_auto):
                 moving = False
             self.Print()
 
-    def Initialize(self):
+    def initialize(self):
         self.field_0[int(self.height/2)][int(self.width/2)] = 2
         self.Place_particle()
         self.Print()
 
-    def Print(self):
+    def print(self):
         for y in range(self.height):
             for x in range(self.width):
                 print(self.field_0[y][x], end=' ')
